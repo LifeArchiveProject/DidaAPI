@@ -1,0 +1,16 @@
+[project]
+name = "didaapi"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115.12",
+    "httpx>=0.28.1",
+    "loguru>=0.7.3",
+    "pandas>=2.0.0",
+    "openpyxl>=3.1.0",
+    "pydantic>=2.11.5",
+    "toml>=0.10.2",
+    "uvicorn[standard]>=0.34.3",
+]

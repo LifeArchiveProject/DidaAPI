@@ -1,0 +1,26 @@
+[app]
+name = "滴答清单API"
+version = "1.0.0"
+debug = true
+host = "127.0.0.1"
+port = 8000
+
+# 注意：URL配置已移动到 core/urls.py 文件中统一管理
+# 这里只保留非URL的配置项
+
+[request_config]
+# 请求相关配置
+user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"
+device_info = '{"platform":"web","os":"Windows 10","device":"Chrome 136.0.0.0","name":"","version":6310,"id":"66f983837eebcc7026d3f813","channel":"website","campaign":"","websocket":""}'
+language = "zh_CN"
+timezone = "Asia/Shanghai"
+timeout = 30.0
+
+[database]
+url = "sqlite:///./output/databases/dida_api.db"
+
+[logging]
+level = "DEBUG"
+format = "{time:YYYY-MM-DD HH:mm:ss} | {level} | {name}:{function}:{line} - {message}"
+rotation = "1 day"
+retention = "7 days"

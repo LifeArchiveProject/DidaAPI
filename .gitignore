@@ -1,0 +1,5 @@
+/output/
+/.history/
+/frontend/node_modules/
+/.idea/
+/frontend/docs/.vitepress/cache/
