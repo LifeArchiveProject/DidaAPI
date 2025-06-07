@@ -401,5 +401,5 @@ X-Tz: Asia/Shanghai
 ## 相关接口
 
 - [验证微信登录](../auth/validate-wechat-login.md) - 获取认证令牌
-- [创建任务](./create-task.md) - 创建新任务
-- [更新任务](./update-task.md) - 更新任务信息
+- [获取已完成任务](./get-completed-tasks.md) - 获取已完成任务列表
+- [获取垃圾桶任务](./get-trash-tasks.md) - 获取垃圾桶任务列表

@@ -4,6 +4,7 @@ export default defineConfig({
   title: '滴答清单API文档',
   description: '滴答清单API接口文档',
   lang: 'zh-CN',
+  base: '/DidaAPI/',
 
   head: [
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }],
@@ -16,7 +17,7 @@ export default defineConfig({
     nav: [
       { text: '首页', link: '/' },
       { text: 'API文档', link: '/api/' },
-      { text: '项目地址', link: 'https://github.com/your-repo' }
+      { text: '项目地址', link: 'https://github.com/LifeArchiveProject/DidaAPI' }
     ],
 
     sidebar: {
@@ -109,7 +110,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/your-repo' }
+      { icon: 'github', link: 'https://github.com/LifeArchiveProject/DidaAPI' }
     ],
 
 

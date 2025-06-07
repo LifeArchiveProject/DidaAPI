@@ -11,6 +11,9 @@ hero:
     - theme: brand
       text: 查看API文档
       link: /api/
+    - theme: alt
+      text: GitHub项目
+      link: https://github.com/LifeArchiveProject/DidaAPI
 
 
 ---

@@ -6,53 +6,47 @@
 
 这是一个获取滴答清单API接口项目，提供包括任务管理、专注记录、习惯打卡、数据导出等功能。
 
+## 🌐 在线文档
+
+- **📖 API文档**: [https://lifearchiveproject.github.io/DidaAPI/](https://lifearchiveproject.github.io/DidaAPI/)
+- **💻 项目地址**: [https://github.com/LifeArchiveProject/DidaAPI](https://github.com/LifeArchiveProject/DidaAPI)
+
 ## 📋 API接口清单
 
-### 🔐 认证相关 (/auth)
-- [x] **微信登录**
+- [x] **🔐 认证相关 (/auth)**
   - [x] `GET /auth/wechat/qrcode` - 获取微信登录二维码
   - [x] `GET /auth/wechat/poll` - 轮询登录状态（自动检测）
   - [x] `GET /auth/wechat/validate` - 验证微信登录
-- [x] **密码登录**
   - [x] `POST /auth/password/login` - 密码登录
-- [x] **手动认证**
   - [x] `POST /tasks/set-auth` - 手动设置认证（通常不需要）
 
-### 📝 任务管理 (/tasks)
-- [x] **任务查询**
+- [x] **📝 任务管理 (/tasks)**
   - [x] `GET /tasks/all` - 获取所有任务
   - [x] `GET /tasks/completed` - 获取已完成/已放弃任务（支持分页）
   - [x] `GET /tasks/trash` - 获取垃圾桶任务
   - [x] `GET /tasks/summary` - 获取任务统计
 
-### 📂 清单管理 (/projects)
-- [x] **清单查询**
+- [x] **📂 清单管理 (/projects)**
   - [x] `GET /projects/all` - 获取清单列表
 
-### 📊 统计分析 (/statistics)
-- [x] **用户统计**
+- [x] **📊 统计分析 (/statistics)**
   - [x] `GET /statistics/ranking` - 获取用户排名统计
   - [x] `GET /statistics/general` - 获取通用统计信息
-- [x] **任务统计**
   - [x] `GET /statistics/tasks` - 获取任务统计信息
 
-### 🍅 专注记录 (/pomodoros)
-- [x] **专注查询**
+- [x] **🍅 专注记录 (/pomodoros)**
   - [x] `GET /pomodoros/general` - 获取番茄专注概览
   - [x] `GET /pomodoros/distribution` - 获取专注详情分布
   - [x] `GET /pomodoros/timeline` - 获取专注记录时间线
 
-### 🎯 习惯管理 (/habits)
-- [x] **习惯查询**
+- [x] **🎯 习惯管理 (/habits)**
   - [x] `GET /habits/all` - 获取所有习惯
   - [x] `GET /habits/statistics/week/current` - 获取本周习惯打卡统计
 
-### 👤 用户信息 (/user)
-- [x] **用户资料**
+- [x] **👤 用户信息 (/user)**
   - [x] `GET /user/info` - 获取用户信息
 
-### 📤 数据导出 (/custom/export)
-- [x] **Excel导出**
+- [x] **📤 数据导出 (/custom/export)**
   - [x] `GET /custom/export/tasks/excel` - 导出任务到Excel
   - [x] `GET /custom/export/focus/excel` - 导出专注记录到Excel
 
