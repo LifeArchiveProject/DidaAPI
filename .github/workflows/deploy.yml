@@ -35,17 +35,18 @@ jobs:
         with:
           node-version: 18
           cache: npm
-          cache-dependency-path: frontend/package-lock.json
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
         with:
           enablement: true
       
-      - name: Install dependencies
+      - name: Clean and install dependencies
         run: |
           cd frontend
-          npm ci
+          rm -rf node_modules package-lock.json
+          npm install --no-optional
+          npm install
       
       - name: Build with VitePress
         run: |
