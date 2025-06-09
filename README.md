@@ -17,6 +17,7 @@
   - [x] `GET /auth/wechat/qrcode` - 获取微信登录二维码
   - [x] `GET /auth/wechat/poll` - 轮询登录状态（自动检测）
   - [x] `GET /auth/wechat/validate` - 验证微信登录
+  - [x] `GET /auth/wechat/callback` - 微信登录回调处理
   - [x] `POST /auth/password/login` - 密码登录
   - [x] `POST /tasks/set-auth` - 手动设置认证（通常不需要）
 
@@ -36,12 +37,18 @@
 
 - [x] **🍅 专注记录 (/pomodoros)**
   - [x] `GET /pomodoros/general` - 获取番茄专注概览
+
+- [x] **⏱️ 正计时专注 (/pomodoros)**
   - [x] `GET /pomodoros/distribution` - 获取专注详情分布
   - [x] `GET /pomodoros/timeline` - 获取专注记录时间线
+  - [x] `GET /pomodoros/heatmap` - 获取专注趋势热力图
+  - [x] `GET /pomodoros/time-distribution` - 获取专注时间分布
+  - [x] `GET /pomodoros/hour-distribution` - 获取专注时间按小时分布
 
 - [x] **🎯 习惯管理 (/habits)**
   - [x] `GET /habits/all` - 获取所有习惯
   - [x] `GET /habits/statistics/week/current` - 获取本周习惯打卡统计
+  - [x] `GET /habits/export` - 导出习惯数据
 
 - [x] **👤 用户信息 (/user)**
   - [x] `GET /user/info` - 获取用户信息

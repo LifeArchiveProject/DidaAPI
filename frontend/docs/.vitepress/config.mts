@@ -39,7 +39,8 @@ export default defineConfig({
             { text: '微信登录流程', link: '/api/auth/wechat-login-flow' },
             { text: '获取微信二维码', link: '/api/auth/get-wechat-qrcode' },
             { text: '轮询登录状态', link: '/api/auth/poll-login-status' },
-            { text: '验证微信登录', link: '/api/auth/validate-wechat-login' }
+            { text: '验证微信登录', link: '/api/auth/validate-wechat-login' },
+            { text: '微信登录回调处理', link: '/api/auth/wechat-callback' }
           ]
         },
         {
@@ -48,7 +49,8 @@ export default defineConfig({
           items: [
             { text: '获取所有任务', link: '/api/tasks/get-all-tasks' },
             { text: '获取已完成任务', link: '/api/tasks/get-completed-tasks' },
-            { text: '获取垃圾桶任务', link: '/api/tasks/get-trash-tasks' }
+            { text: '获取垃圾桶任务', link: '/api/tasks/get-trash-tasks' },
+            { text: '获取任务统计', link: '/api/tasks/get-tasks-summary' }
           ]
         },
         {
@@ -62,7 +64,9 @@ export default defineConfig({
           text: '📊 统计分析',
           collapsed: false,
           items: [
-            { text: '获取用户排名统计', link: '/api/statistics' }
+            { text: '获取用户排名统计', link: '/api/statistics' },
+            { text: '获取通用统计信息', link: '/api/statistics/general-statistics' },
+            { text: '获取任务统计信息', link: '/api/statistics/task-statistics' }
           ]
         },
         {
@@ -88,6 +92,7 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: '获取所有习惯', link: '/api/habits' },
+            { text: '获取本周习惯打卡统计', link: '/api/habits/week-current-statistics' },
             { text: '导出习惯数据', link: '/api/habits/export-habits' }
           ]
         },

@@ -9,18 +9,22 @@
 - [获取微信二维码](./auth/get-wechat-qrcode.md) - 获取微信登录二维码
 - [轮询登录状态](./auth/poll-login-status.md) - 检查二维码扫码状态
 - [验证微信登录](./auth/validate-wechat-login.md) - 验证微信登录并获取令牌
+- [微信登录回调处理](./auth/wechat-callback.md) - 处理微信扫码后的回调，提取code参数
 - [密码登录](./auth/password-login.md) - 使用用户名和密码进行登录
 
 ### 任务管理
 - [获取所有任务](./tasks/get-all-tasks.md) - 获取用户的所有任务列表
 - [获取已完成任务](./tasks/get-completed-tasks.md) - 获取已完成/已放弃的任务列表，支持分页
 - [获取垃圾桶任务](./tasks/get-trash-tasks.md) - 获取垃圾桶中的任务列表
+- [获取任务统计](./tasks/get-tasks-summary.md) - 获取任务的统计信息
 
 ### 清单管理
 - [获取清单列表](./projects.md) - 获取用户的所有清单列表
 
 ### 统计分析
 - [获取用户排名统计](./statistics.md) - 获取用户在滴答清单中的排名和基本统计信息
+- [获取通用统计信息](./statistics/general-statistics.md) - 获取概览、成就值、趋势等通用统计信息
+- [获取任务统计信息](./statistics/task-statistics.md) - 获取指定日期范围内的任务统计信息
 
 ### 番茄专注
 - [获取番茄专注概览](./pomodoros.md) - 获取番茄专注的概览统计信息
@@ -34,6 +38,7 @@
 
 ### 习惯管理
 - [获取所有习惯](./habits.md) - 获取当前用户的所有习惯列表
+- [获取本周习惯打卡统计](./habits/week-current-statistics.md) - 获取本周的习惯打卡统计信息
 - [导出习惯数据](./habits/export-habits.md) - 导出用户的习惯数据为Excel文件
 
 ### 用户信息
