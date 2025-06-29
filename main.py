@@ -1,13 +1,16 @@
 """滴答清单API主应用"""
+import os
+from contextlib import asynccontextmanager
+
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
-from contextlib import asynccontextmanager
 from core import config, db
-from utils import app_logger
-from services import wechat_service
 from routers import auth, tasks, system, projects, statistics, pomodoros, habits, users, export
+from services import wechat_service
+from utils import app_logger
 
 
 @asynccontextmanager
@@ -33,9 +36,14 @@ app = FastAPI(
     title=config.app.get('name', '滴答清单API'),
     version=config.app.get('version', '1.0.0'),
     description="""
-## 滴答清单Web端API接口
+## 滴答清单API接口文档
 
 这是一个滴答清单的Web端API接口项目，**在原始滴答清单API基础上进行了封装**，提供更简单易用的接口。
+
+### 🚀 快速开始
+
+#### 微信扫码登录
+**[📱 点击这里体验微信扫码登录](/auth/wechat/login)**
     """,
     docs_url="/docs",
     redoc_url="/redoc",
@@ -51,6 +59,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# 创建静态文件目录
+static_dir = "static"
+if not os.path.exists(static_dir):
+    os.makedirs(static_dir)
+
+# 挂载静态文件
+app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
 # 注册路由
 app.include_router(auth.router)
@@ -73,6 +88,7 @@ async def root():
         "docs": "/docs",
         "redoc": "/redoc",
         "health": "/auth/health",
+        "wechat_login": "/auth/wechat/login",  # 添加微信登录页面
         "auth_status": "/tasks/status",
         "url_management": "/system/urls",
         "system_info": "/system/info",

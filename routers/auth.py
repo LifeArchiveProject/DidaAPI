@@ -1,10 +1,49 @@
 """认证相关API路由"""
 from fastapi import APIRouter, HTTPException, Query
+from fastapi.responses import FileResponse
 from models import WeChatQRResponse, WeChatValidateResponse, ApiResponse, PasswordLoginRequest
 from services import wechat_service
 from utils import app_logger
+import os
 
 router = APIRouter(prefix="/auth", tags=["认证"])
+
+
+@router.get("/wechat/login",
+           summary="微信扫码登录页面",
+           description="返回完整的微信扫码登录HTML页面")
+async def wechat_login_page():
+    """
+    微信扫码登录页面
+    
+    返回一个完整的HTML页面，集成了：
+    - 自动获取微信二维码
+    - 实时显示二维码
+    - 自动轮询登录状态
+    - 登录成功处理
+    - 错误处理和重试
+    
+    用户只需访问此页面即可完成完整的微信扫码登录流程
+    """
+    try:
+        static_file = os.path.join("static", "wechat_login.html")
+        if not os.path.exists(static_file):
+            raise HTTPException(
+                status_code=404,
+                detail="微信登录页面文件不存在"
+            )
+        
+        return FileResponse(
+            static_file,
+            media_type="text/html",
+            headers={"Cache-Control": "no-cache"}
+        )
+    except Exception as e:
+        app_logger.error(f"返回微信登录页面时发生错误: {e}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"服务器内部错误: {str(e)}"
+        )
 
 
 @router.get("/wechat/qrcode", 
