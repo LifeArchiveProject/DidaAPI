@@ -73,7 +73,9 @@ export default defineConfig({
           text: '🍅 番茄专注',
           collapsed: false,
           items: [
-            { text: '获取番茄专注概览', link: '/api/pomodoros' }
+            { text: '获取番茄专注概览', link: '/api/pomodoros' },
+            { text: '番茄钟控制接口', link: '/api/pomodoros/focus-operations' },
+            { text: '番茄钟自动化操作', link: '/api/pomodoros/focus-control-shortcuts' }
           ]
         },
         {

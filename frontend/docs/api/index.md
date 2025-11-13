@@ -28,6 +28,8 @@
 
 ### 番茄专注
 - [获取番茄专注概览](./pomodoros.md) - 获取番茄专注的概览统计信息
+- [执行番茄钟控制操作](./pomodoros/focus-operations.md) - 批量执行番茄钟的开始、暂停、继续、结束等操作
+- [番茄钟自动操作接口](./pomodoros/focus-control-shortcuts.md) - 使用封装端点自动补齐 focusOp 所需字段
 
 ### 正计时专注
 - [获取专注记录时间线](./pomodoros/focus-timeline.md) - 获取专注记录的时间线数据，支持分页
