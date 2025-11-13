@@ -21,6 +21,11 @@ from .base import (
     PomodoroGeneralResponse,
     PomodoroDistributionResponse,
     PomodoroTimelineResponse,
+    FocusOperation,
+    FocusOperationRequest,
+    FocusStartOptions,
+    FocusControlOptions,
+    FocusStopOptions,
     # 习惯管理相关模型
     HabitItem
 )
@@ -47,6 +52,11 @@ __all__ = [
     'PomodoroGeneralResponse',
     'PomodoroDistributionResponse',
     'PomodoroTimelineResponse',
+    'FocusOperation',
+    'FocusOperationRequest',
+    'FocusStartOptions',
+    'FocusControlOptions',
+    'FocusStopOptions',
     # 习惯管理相关模型
     'HabitItem'
 ]

@@ -1,7 +1,7 @@
 """数据模型定义"""
 from datetime import datetime, timezone, timedelta
 from typing import Optional, Union
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 
 # 中国时区
 CHINA_TZ = timezone(timedelta(hours=8))
@@ -201,6 +201,202 @@ class PomodoroTimelineResponse(BaseModel):
     message: str = Field(..., description="响应消息")
     timeline: Optional[list] = Field(None, description="专注记录时间线")
     raw_response: Optional[Union[dict, list]] = Field(None, description="原始响应数据")
+
+
+class FocusOperation(BaseModel):
+    """番茄钟操作项模型"""
+    model_config = ConfigDict(
+        extra="forbid",
+        populate_by_name=True,
+        json_schema_extra={
+            "description": "番茄钟单个操作项，需和滴答清单桌面端保持一致。",
+            "examples": [
+                {
+                    "id": "6915ae6838b6e20c76868c45",
+                    "oId": "6915ae6838b6e20c76868c44",
+                    "oType": 0,
+                    "op": "start",
+                    "duration": 25,
+                    "firstFocusId": "6915ae6838b6e20c76868c44",
+                    "focusOnId": "",
+                    "autoPomoLeft": 5,
+                    "pomoCount": 1,
+                    "manual": True,
+                    "note": "",
+                    "time": "2025-11-13T10:09:44.765+0000"
+                }
+            ]
+        }
+    )
+
+    id: str = Field(
+        ...,
+        description="【必填】操作唯一ID，建议复用官方返回的 id 或使用 UUID。",
+        examples=["6915ae6838b6e20c76868c45"]
+    )
+    o_id: str = Field(
+        ...,
+        alias="oId",
+        description="【必填】目标番茄钟 ID，通常与 firstFocusId 相同。",
+        examples=["6915ae6838b6e20c76868c44"]
+    )
+    o_type: int = Field(
+        ...,
+        alias="oType",
+        description="【必填】对象类型，番茄钟固定为 0。",
+        examples=[0]
+    )
+    op: str = Field(
+        ...,
+        description="【必填】操作类型，例如 start、pause、continue、drop、exit。",
+        examples=["start"]
+    )
+    duration: int = Field(
+        ...,
+        description="【必填】番茄钟总时长（分钟）。",
+        examples=[25]
+    )
+    first_focus_id: str = Field(
+        ...,
+        alias="firstFocusId",
+        description="【必填】首个番茄钟 ID，用于串联同一番茄会话。",
+        examples=["6915ae6838b6e20c76868c44"]
+    )
+    focus_on_id: str = Field(
+        "",
+        alias="focusOnId",
+        description="【选填】关联的专注任务 ID，没有可保持为空字符串。",
+        examples=[""]
+    )
+    focus_on_type: Optional[int] = Field(
+        None,
+        alias="focusOnType",
+        description="【选填】关联对象类型（0=任务，1=清单，2=习惯等）"
+    )
+    focus_on_title: Optional[str] = Field(
+        None,
+        alias="focusOnTitle",
+        description="【选填】关联对象标题"
+    )
+    auto_pomo_left: int = Field(
+        0,
+        alias="autoPomoLeft",
+        description="【选填】自动番茄剩余数量，保持与最新响应一致。",
+        examples=[5]
+    )
+    pomo_count: int = Field(
+        0,
+        alias="pomoCount",
+        description="【选填】当前番茄累计数量。",
+        examples=[1]
+    )
+    manual: bool = Field(
+        True,
+        description="【选填】是否手动触发操作，桌面端默认 true。",
+        examples=[True]
+    )
+    note: str = Field(
+        "",
+        description="【选填】备注信息，可留空。",
+        examples=[""]
+    )
+    time: str = Field(
+        ...,
+        description="【必填】操作时间，ISO 字符串，示例：2025-11-13T10:09:44.765+0000。",
+        examples=["2025-11-13T10:09:44.765+0000"]
+    )
+    created_time: Optional[int] = Field(
+        None,
+        alias="createdTime",
+        description="【选填】操作创建时间戳（毫秒）"
+    )
+
+
+class FocusOperationRequest(BaseModel):
+    """番茄钟操作请求模型"""
+    model_config = ConfigDict(
+        populate_by_name=True,
+        json_schema_extra={
+            "description": "番茄钟批量操作请求体，lastPoint 与 opList 为必填字段。",
+            "example": {
+                "lastPoint": 1760632928097,
+                "opList": [
+                    {
+                        "id": "6915ae6838b6e20c76868c45",
+                        "oId": "6915ae6838b6e20c76868c44",
+                        "oType": 0,
+                        "op": "start",
+                        "duration": 25,
+                        "firstFocusId": "6915ae6838b6e20c76868c44",
+                        "focusOnId": "",
+                        "autoPomoLeft": 5,
+                        "pomoCount": 1,
+                        "manual": True,
+                        "note": "",
+                        "time": "2025-11-13T10:09:44.765+0000"
+                    }
+                ]
+            }
+        }
+    )
+
+    last_point: int = Field(
+        ...,
+        alias="lastPoint",
+        description="【必填】最新 point 指针值，使用上一次响应中的 point。",
+        examples=[1760632928097]
+    )
+    op_list: list[FocusOperation] = Field(
+        ...,
+        alias="opList",
+        description="【必填】番茄钟操作项列表，可在一次请求中提交一个或多个操作。",
+        examples=[[
+            {
+                "id": "6915ae6838b6e20c76868c45",
+                "oId": "6915ae6838b6e20c76868c44",
+                "oType": 0,
+                "op": "start",
+                "duration": 25,
+                "firstFocusId": "6915ae6838b6e20c76868c44",
+                "focusOnId": "",
+                "autoPomoLeft": 5,
+                "pomoCount": 1,
+                "manual": True,
+                "note": "",
+                "time": "2025-11-13T10:09:44.765+0000"
+            }
+        ]]
+    )
+
+
+class FocusStartOptions(BaseModel):
+    """番茄钟开始操作参数"""
+
+    duration: int = Field(25, ge=1, le=360, description="番茄时长（分钟）")
+    auto_pomo_left: int = Field(5, ge=0, alias="autoPomoLeft", description="自动番茄剩余数量")
+    pomo_count: int = Field(1, ge=0, alias="pomoCount", description="当前番茄累计数量")
+    manual: bool = Field(True, description="是否手动操作")
+    note: str = Field("", description="备注信息", max_length=512)
+    focus_on_id: str = Field("", alias="focusOnId", description="关联的任务 ID，可为空字符串")
+    focus_on_type: Optional[int] = Field(None, alias="focusOnType", description="关联对象类型，例如 0=任务")
+    focus_on_title: Optional[str] = Field(None, alias="focusOnTitle", description="关联对象标题")
+    last_point: Optional[int] = Field(None, alias="lastPoint", ge=0, description="覆盖使用的同步指针，默认为缓存值")
+
+
+class FocusControlOptions(BaseModel):
+    """番茄钟控制操作参数（暂停、继续、完成等）"""
+
+    manual: Optional[bool] = Field(None, description="是否手动操作（为空则沿用上次设置）")
+    note: Optional[str] = Field(None, description="备注信息，不传则沿用上次记录", max_length=512)
+    focus_on_type: Optional[int] = Field(None, alias="focusOnType", description="关联对象类型")
+    focus_on_title: Optional[str] = Field(None, alias="focusOnTitle", description="关联对象标题")
+    last_point: Optional[int] = Field(None, alias="lastPoint", ge=0, description="覆盖使用的同步指针")
+
+
+class FocusStopOptions(FocusControlOptions):
+    """番茄钟结束操作参数（drop/exit）"""
+
+    include_exit: bool = Field(True, description="是否在 drop 后自动追加 exit 操作")
 
 
 # ================================

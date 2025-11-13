@@ -4,3 +4,5 @@
 /.idea/
 /frontend/docs/.vitepress/cache/
 /frontend/docs/.vitepress/dist/
+__pycache__/
+**/__pycache__/

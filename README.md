@@ -37,6 +37,15 @@
 
 - [x] **🍅 专注记录 (/pomodoros)**
   - [x] `GET /pomodoros/general` - 获取番茄专注概览
+  - [x] `GET /pomodoros/focus/current` - 查看滴答服务器上当前番茄状态
+  - [x] `GET /pomodoros/focus/start` - 自动生成 start 操作所需参数
+  - [x] `GET /pomodoros/focus/pause` - 自动生成 pause 操作所需参数
+  - [x] `GET /pomodoros/focus/continue` - 自动生成 continue 操作所需参数
+  - [x] `GET /pomodoros/focus/finish` - 结束番茄钟（正常完成）
+  - [x] `GET /pomodoros/focus/stop` - 自动组合 drop/exit 操作，快速结束番茄
+  - [x] `POST /pomodoros/focus/point/{point}` - 手动设置番茄操作指针
+  - [x] `POST /pomodoros/focus/reset` - 重置本地番茄状态缓存
+  - [x] `GET /pomodoros/focus/state` - 查看本地缓存的番茄会话状态
 
 - [x] **⏱️ 正计时专注 (/pomodoros)**
   - [x] `GET /pomodoros/distribution` - 获取专注详情分布

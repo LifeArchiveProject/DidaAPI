@@ -50,6 +50,11 @@ DIDA_API_BASE = {
     "web_domain": "https://dida365.com",
 }
 
+# 滴答清单微服务基础配置
+DIDA_MS_BASE = {
+    "base_url": "https://ms.dida365.com"
+}
+
 # 滴答清单认证相关API
 DIDA_AUTH_APIS = {
     # 微信登录验证接口
@@ -117,6 +122,12 @@ DIDA_POMODORO_APIS = {
 
     # 专注时间按小时分布（需要拼接日期范围）
     "focus_hour_distribution": "/pomodoros/statistics/dist/clock",  # /pomodoros/statistics/dist/clock/{start_date}/{end_date}
+}
+
+# 滴答清单番茄钟操作API
+DIDA_FOCUS_APIS = {
+    # 批量执行番茄钟操作（开始、暂停、继续、结束等）
+    "focus_batch_operation": "/focus/batch/focusOp"
 }
 
 # 滴答清单习惯管理API
@@ -248,6 +259,22 @@ def build_dida_api_url(endpoint: str) -> str:
     return f"{DIDA_API_BASE['base_url']}{endpoint}"
 
 
+def build_dida_ms_url(endpoint: str) -> str:
+    """
+    构建滴答清单微服务API完整URL
+
+    Args:
+        endpoint: API端点路径
+
+    Returns:
+        str: 完整的微服务API URL
+    """
+    if not endpoint.startswith('/'):
+        endpoint = '/' + endpoint
+
+    return f"{DIDA_MS_BASE['base_url']}{endpoint}"
+
+
 def build_wechat_validate_url(code: str, state: str = None) -> str:
     """
     构建微信登录验证URL
@@ -303,6 +330,7 @@ def get_all_external_urls() -> dict:
     return {
         "wechat_urls": WECHAT_URLS,
         "dida_base": DIDA_API_BASE,
+        "dida_ms_base": DIDA_MS_BASE,
         "official_docs": OFFICIAL_DOCS,
         "tech_references": TECH_REFERENCES
     }
@@ -321,6 +349,7 @@ def get_api_endpoints() -> dict:
         "project_apis": DIDA_PROJECT_APIS,
         "statistics_apis": DIDA_STATISTICS_APIS,
         "pomodoro_apis": DIDA_POMODORO_APIS,
+        "focus_apis": DIDA_FOCUS_APIS,
         "habit_apis": DIDA_HABIT_APIS,
         "user_apis": DIDA_USER_APIS,
         "custom_apis": CUSTOM_APIS
